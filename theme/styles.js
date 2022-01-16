@@ -3,18 +3,20 @@ const styles = {
     global: {
       'html, body': {
         color: 'black',
-        lineHeight: 'tall',
         height: 'full',
         width: 'full',
-        bg: "#FBFBFF"
+        bg: "#FBFBFF",
       },
+      'html': {
+        fontSize: "1vw",
+      }
     },
   },
   fonts: {
     kimnyTitle: 'Alfa Slab One'
   },
   colors: {
-    kimnybg: "#FBFBFF"
+    kimnybg: "#FBFBFF",
   }
 };
 
