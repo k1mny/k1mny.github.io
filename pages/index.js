@@ -4,7 +4,7 @@ import { motion, useAnimation } from 'framer-motion'
 import { convertRemToPx } from '../util/util';
 import { useState } from 'react';
 import { FaTwitter } from 'react-icons/fa';
-import { Vanta } from './components/vanta';
+import Vanta from './components/vanta';
 
 export default function Home() {
   const [isAnimated, setAnimated] = useState(false);

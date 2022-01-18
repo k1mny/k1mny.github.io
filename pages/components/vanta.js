@@ -3,7 +3,7 @@ import WAVES from "vanta/dist/vanta.waves.min";
 import * as THREE from "three";
 import { Box } from "@chakra-ui/react";
 
-export const Vanta = ({children}) => {
+export default function Vanta(props) {
   const [vantaEffect, setVantaEffect] = useState(0);
   const vantaRef = useRef(null);
 
@@ -33,7 +33,7 @@ export const Vanta = ({children}) => {
   }, [vantaEffect]);
   return (
     <Box ref={vantaRef} w="full" h="100vh">
-      <div>{children}</div>
+      <div>{props.children}</div>
     </Box>
   );
-};
+}
