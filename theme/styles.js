@@ -5,7 +5,6 @@ const styles = {
         color: 'black',
         height: 'full',
         width: 'full',
-        bg: "#FBFBFF",
       },
       'html': {
         fontSize: "1vw",
