@@ -6,17 +6,17 @@ const styles = {
         height: 'full',
         width: 'full',
       },
-      'html': {
-        fontSize: "1vw",
-      }
+      html: {
+        fontSize: '1vw',
+      },
     },
   },
   fonts: {
-    kimnyTitle: 'Alfa Slab One'
+    kimnyTitle: 'Alfa Slab One',
   },
   colors: {
-    kimnybg: "#FBFBFF",
-  }
+    kimnybg: '#FBFBFF',
+  },
 };
 
-export default styles
+export default styles;
