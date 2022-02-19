@@ -2,7 +2,7 @@ const styles = {
   styles: {
     global: {
       'html, body': {
-        color: 'black',
+        color: 'white',
         height: 'full',
         width: 'full',
       },
@@ -12,7 +12,7 @@ const styles = {
     },
   },
   fonts: {
-    kimnyTitle: 'Alfa Slab One',
+    kimnyTitle: 'Melete',
   },
   colors: {
     kimnybg: '#FBFBFF',

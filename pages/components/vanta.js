@@ -20,7 +20,7 @@ export default function Vanta(props) {
           minWidth: 200.0,
           scale: 1.0,
           scaleMobile: 1.0,
-          color: 0x9e9ea7,
+          color: 0x000000,
           shininess: 18.0,
           waveHeight: 9.0,
           waveSpeed: 0.5,
