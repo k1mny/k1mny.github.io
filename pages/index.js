@@ -65,7 +65,12 @@ export default function Home() {
             far={50}
           />
         </Suspense>
-        <OrbitControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 1.75} />
+        <OrbitControls
+          makeDefault
+          enablePan={false}
+          minPolarAngle={0}
+          maxPolarAngle={Math.PI / 1.75}
+        />
       </Canvas>
     </>
   );
@@ -92,8 +97,8 @@ function SelectToZoom({ children }) {
   const group = useRef();
   const [hovered, setHovered] = useState();
   const [clicked, setClicked] = useState();
-  useFrame((state) => {
-    group.current.children.forEach((child, index) => {
+  useFrame(() => {
+    group.current.children.forEach((child) => {
       const currentColor =
         clicked === child.material.name
           ? 'gold'
@@ -103,10 +108,6 @@ function SelectToZoom({ children }) {
       child.material.color.lerp(
         color.set(currentColor).convertSRGBToLinear(),
         hovered ? 0.1 : 0.05,
-      );
-      child.material.color.lerp(
-        color.set(currentColor).convertSRGBToLinear(),
-        clicked ? 0.1 : 0.05,
       );
     });
   });
