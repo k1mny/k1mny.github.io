@@ -1,7 +1,9 @@
 import { useRecoilValue } from 'recoil';
 import { useClicked } from '../globalStates/globalStates';
 
-export default function PopoverInfo({ title, text }) {
+import styles from '../styles/glitch.module.css';
+
+export default function PopoverInfo() {
   const clicked = useRecoilValue(useClicked);
   if (clicked) {
     return (
@@ -16,7 +18,11 @@ export default function PopoverInfo({ title, text }) {
           zIndex: '10',
         }}
       >
-        {clicked}
+        <p className={styles.glitch}>
+          <span aria-hidden>{clicked}</span>
+          {clicked}
+          <span aria-hidden>{clicked}</span>
+        </p>
       </div>
     );
   }
