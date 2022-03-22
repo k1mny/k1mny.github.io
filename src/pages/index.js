@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import MainCanvas from '../components/MainCanvas';
+import PopoverInfo from '../components/popover';
 import Underlay from '../components/Underlay';
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
 
       <Underlay />
       <MainCanvas />
+      <PopoverInfo />
     </>
   );
 }

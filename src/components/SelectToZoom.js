@@ -2,6 +2,8 @@ import { useRef, useState, useCallback } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useBounds } from '@react-three/drei';
 import * as THREE from 'three';
+import { useRecoilState } from 'recoil';
+import { useClicked } from '../globalStates/globalStates';
 
 const color = new THREE.Color();
 
@@ -11,7 +13,7 @@ export default function SelectToZoom({ children }) {
   const api = useBounds();
   const group = useRef();
   const [hovered, setHovered] = useState();
-  const [clicked, setClicked] = useState();
+  const [clicked, setClicked] = useRecoilState(useClicked);
   useFrame(() => {
     group.current.children.forEach((child) => {
       const currentColor =
