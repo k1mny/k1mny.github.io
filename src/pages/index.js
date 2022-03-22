@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import MainCanvas from './components/MainCanvas';
+import MainCanvas from '../components/MainCanvas';
+import Underlay from '../components/Underlay';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         {/* <link rel='preload' href='/fonts/melete_0100/Melete-Medium.ttf' as='font' crossOrigin='' /> */}
       </Head>
 
+      <Underlay />
       <MainCanvas />
     </>
   );
