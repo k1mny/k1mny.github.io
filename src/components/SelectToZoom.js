@@ -17,21 +17,16 @@ export default function SelectToZoom({ children }) {
   useFrame(() => {
     group.current.children.forEach((child) => {
       const currentColor =
-        clicked === child.material.name
-          ? 'gold'
-          : hovered === child.material.name
-          ? 'tomato'
-          : 'white';
-      child.material.color.lerp(
-        color.set(currentColor).convertSRGBToLinear(),
-        hovered ? 0.1 : 0.05,
+        clicked === child.name ? 'gold' : hovered === child.name ? 'tomato' : 'white';
+      child.children.forEach((c) =>
+        c.material.color.lerp(color.set(currentColor).convertSRGBToLinear(), hovered ? 0.1 : 0.05),
       );
     });
   });
 
   const onPointerOverHandler = useCallback((e) => {
     e.stopPropagation();
-    setHovered(e.object.material.name);
+    setHovered(e.object.parent.name);
   }, []);
   const onPointerOutHandler = useCallback((e) => {
     e.stopPropagation();
@@ -47,7 +42,7 @@ export default function SelectToZoom({ children }) {
     e.stopPropagation();
     if (e.delta <= 2) {
       api.refresh(e.object).fit();
-      setClicked(e.object.material.name);
+      setClicked(e.object.parent.name);
     }
   }, []);
   return (

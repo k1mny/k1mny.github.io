@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Bounds, OrbitControls, ContactShadows, Html } from '@react-three/drei';
+import { Bounds, OrbitControls, ContactShadows, Html, Stats } from '@react-three/drei';
 import SelectToZoom from './SelectToZoom';
 import Model from './model';
 import { useRecoilBridgeAcrossReactRoots_UNSTABLE } from 'recoil';
@@ -36,6 +36,7 @@ export default function MainCanvas() {
               <Model name='Table' position={[1, -4, -28]} rotation={[1, 0, -1]} scale={0.5} />
               <Model name='VR_Headset' position={[7, -15, 28]} rotation={[1, 0, -1]} scale={5} />
               <Model name='Zeppelin' position={[-20, 10, 10]} rotation={[3, -1, 3]} scale={0.005} />
+              <Model name='Dice' position={[0, 0, 0]} rotation={[3, -1, 3]} scale={1} />
             </SelectToZoom>
           </Bounds>
           <ContactShadows
@@ -54,6 +55,7 @@ export default function MainCanvas() {
           minPolarAngle={0}
           maxPolarAngle={Math.PI / 1.75}
         />
+        <Stats />
       </RecoilBridge>
     </Canvas>
   );
