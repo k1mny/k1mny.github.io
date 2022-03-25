@@ -7,6 +7,22 @@ import { useClicked } from '../globalStates/globalStates';
 
 const color = new THREE.Color();
 
+const recolorMaterial = (obj, recolor, alpha) => {
+  if (obj.type === 'Mesh' && obj.name !== 'fixMaterial') {
+    obj.material.color.lerp(color.set(recolor).convertSRGBToLinear(), alpha);
+  } else {
+    obj.children.forEach((child) => recolorMaterial(child, recolor, alpha));
+  }
+};
+
+const getTarget = (obj) => {
+  let target = obj;
+  while (target.name === '' || target.name === 'fixMaterial') {
+    target = target.parent;
+  }
+  return target;
+};
+
 // This component wraps children in a group with a click handler
 // Clicking any object will refresh and fit bounds
 export default function SelectToZoom({ children }) {
@@ -18,15 +34,14 @@ export default function SelectToZoom({ children }) {
     group.current.children.forEach((child) => {
       const currentColor =
         clicked === child.name ? 'gold' : hovered === child.name ? 'tomato' : 'white';
-      child.children.forEach((c) =>
-        c.material.color.lerp(color.set(currentColor).convertSRGBToLinear(), hovered ? 0.1 : 0.05),
-      );
+      recolorMaterial(child, currentColor, hovered ? 0.1 : 0.05);
     });
   });
 
   const onPointerOverHandler = useCallback((e) => {
     e.stopPropagation();
-    setHovered(e.object.parent.name);
+    const target = getTarget(e.object);
+    setHovered(target.name);
   }, []);
   const onPointerOutHandler = useCallback((e) => {
     e.stopPropagation();
@@ -41,8 +56,9 @@ export default function SelectToZoom({ children }) {
   const onClickHandler = useCallback((e) => {
     e.stopPropagation();
     if (e.delta <= 2) {
-      api.refresh(e.object).fit();
-      setClicked(e.object.parent.name);
+      const target = getTarget(e.object);
+      api.refresh(target).fit();
+      setClicked(target.name);
     }
   }, []);
   return (
