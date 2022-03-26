@@ -13,3 +13,5 @@ export default function ModelDice() {
     </>
   );
 }
+
+useGLTF.preload('/dice.gltf');
