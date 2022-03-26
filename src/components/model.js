@@ -1,5 +1,6 @@
 import Diary from './models/Diary';
 import ModelDice from './models/dice';
+import Frame from './models/Frame';
 import ModelWor3dle from './models/wor3dle';
 
 export default function Model({ name, ...props }) {
@@ -13,6 +14,9 @@ export default function Model({ name, ...props }) {
       break;
     case 'Diary':
       model = <Diary />;
+      break;
+    case 'Frame':
+      model = <Frame />;
       break;
     default:
       model = <ModelDefault />;
