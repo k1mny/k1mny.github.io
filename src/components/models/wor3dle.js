@@ -7,11 +7,11 @@ extend({ TextGeometry });
 export default function ModelWor3dle() {
   return (
     <>
-      <ModelWordBox char='w' position={[-4, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
-      <ModelWordBox char='o' position={[-2, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
-      <ModelWordBox char='r' position={[0, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
-      <ModelWordBox char='d' position={[2, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
-      <ModelWordBox char='l' position={[4, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
+      <ModelWordBox char='K' position={[-4.2, 0, 0]} rotation={[0, -Math.PI / 2, 0, 'YXZ']} />
+      <ModelWordBox char='I' position={[-2.1, 0, 0]} rotation={[0, -Math.PI / 2, 0, 'YXZ']} />
+      <ModelWordBox char='M' position={[0, 0, 0]} rotation={[0, -Math.PI / 2, 0, 'YXZ']} />
+      <ModelWordBox char='N' position={[2.1, 0, 0]} rotation={[0, -Math.PI / 2, 0, 'YXZ']} />
+      <ModelWordBox char='Y' position={[4.2, 0, 0]} rotation={[0, -Math.PI / 2, 0, 'YXZ']} />
     </>
   );
 }
