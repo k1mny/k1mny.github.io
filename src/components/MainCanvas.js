@@ -30,7 +30,7 @@ export default function MainCanvas() {
               <Model name='Curly' position={[1, -11, -20]} rotation={[2, 0, -0]} />
               <Model name='DNA' position={[20, 0, -17]} rotation={[1, 1, -2]} />
               <Model name='Headphones' position={[20, 2, 4]} rotation={[1, 0, -1]} />
-              <Model name='Notebook' position={[-21, -15, -13]} rotation={[2, 0, 1]} />
+              <Model name='Diary' position={[-21, -15, -13]} rotation={[2, 0, 1]} />
               <Model name='Wor3dle' position={[10, 10, -15]} rotation={[0, 0, 0]} />
               <Model name='Dice' position={[0, 0, 0]} rotation={[3, -1, 3]} scale={1} />
             </SelectToZoom>

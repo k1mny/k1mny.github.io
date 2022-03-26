@@ -1,3 +1,4 @@
+import Diary from './models/Diary';
 import ModelDice from './models/dice';
 import ModelWor3dle from './models/wor3dle';
 
@@ -9,6 +10,9 @@ export default function Model({ name, ...props }) {
       break;
     case 'Wor3dle':
       model = <ModelWor3dle />;
+      break;
+    case 'Diary':
+      model = <Diary />;
       break;
     default:
       model = <ModelDefault />;
