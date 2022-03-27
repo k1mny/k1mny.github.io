@@ -4,6 +4,7 @@ import { useBounds } from '@react-three/drei';
 import * as THREE from 'three';
 import { useRecoilState } from 'recoil';
 import { useClicked } from '../globalStates/globalStates';
+import { COLOR_MAIN, COLOR_SUB } from '../constant/color';
 
 const color = new THREE.Color();
 
@@ -33,7 +34,7 @@ export default function SelectToZoom({ children }) {
   useFrame(() => {
     group.current.children.forEach((child) => {
       const currentColor =
-        clicked === child.name ? 'gold' : hovered === child.name ? 'tomato' : 'white';
+        clicked === child.name ? COLOR_MAIN : hovered === child.name ? COLOR_SUB : 'white';
       recolorMaterial(child, currentColor, hovered ? 0.1 : 0.05);
     });
   });
