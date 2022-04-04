@@ -1,3 +1,3 @@
-export const COLOR_MAIN = '#5f3261';
-export const COLOR_SUB = '#8c003d';
-export const COLOR_ACCENT = '#ff914c';
+export const COLOR_MAIN = '#696969';
+export const COLOR_SUB = '#b5b5b5';
+export const COLOR_ACCENT = '#ffffff';

@@ -34,7 +34,7 @@ export default function SelectToZoom({ children }) {
   useFrame((state, delta) => {
     group.current.children.forEach((child) => {
       const currentColor =
-        clicked === child.name ? COLOR_MAIN : hovered === child.name ? COLOR_SUB : 'white';
+        clicked === child.name ? 'white' : hovered === child.name ? COLOR_SUB : COLOR_MAIN;
       recolorMaterial(child, currentColor, hovered ? 0.1 : 0.05);
     });
     if (!clicked) {

@@ -27,8 +27,6 @@ export default function MainCanvas() {
         >
           <Bounds fit clip margin={1.2}>
             <SelectToZoom>
-              <Model name='Curly' position={[1, -11, -20]} rotation={[2, 0, -0]} />
-              <Model name='DNA' position={[20, 0, -17]} rotation={[1, 1, -2]} />
               <Model name='Frame' position={[0, 0, 0]} rotation={[0, 0, 0]} scale={10} />
               <Model name='Diary' position={[-21, -15, -13]} rotation={[2, 0, 1]} scale={0.5} />
               <Model name='Wor3dle' position={[10, 10, -15]} rotation={[0, 0, 0]} scale={2} />
