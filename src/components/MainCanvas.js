@@ -1,5 +1,5 @@
-import { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Suspense, useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Bounds, OrbitControls, ContactShadows, Html, Stats } from '@react-three/drei';
 import SelectToZoom from './SelectToZoom';
 import Model from './model';
@@ -30,9 +30,9 @@ export default function MainCanvas() {
               <Model name='Curly' position={[1, -11, -20]} rotation={[2, 0, -0]} />
               <Model name='DNA' position={[20, 0, -17]} rotation={[1, 1, -2]} />
               <Model name='Frame' position={[0, 0, 0]} rotation={[0, 0, 0]} scale={10} />
-              <Model name='Diary' position={[-21, -15, -13]} rotation={[2, 0, 1]} />
+              <Model name='Diary' position={[-21, -15, -13]} rotation={[2, 0, 1]} scale={0.5} />
               <Model name='Wor3dle' position={[10, 10, -15]} rotation={[0, 0, 0]} scale={2} />
-              <Model name='Dice' position={[20, 15, 4]} rotation={[3, -1, 3]} scale={3} />
+              <Model name='Dice' position={[20, 15, 4]} rotation={[3, -1, 3]} scale={2} />
             </SelectToZoom>
           </Bounds>
           <ContactShadows
@@ -48,8 +48,8 @@ export default function MainCanvas() {
         <OrbitControls
           makeDefault
           enablePan={false}
-          minPolarAngle={0}
-          maxPolarAngle={Math.PI / 1.75}
+          minPolarAngle={Math.PI / 6}
+          maxPolarAngle={Math.PI / 2}
         />
         <Stats />
       </RecoilBridge>
