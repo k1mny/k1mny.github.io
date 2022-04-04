@@ -31,12 +31,15 @@ export default function SelectToZoom({ children }) {
   const group = useRef();
   const [hovered, setHovered] = useState();
   const [clicked, setClicked] = useRecoilState(useClicked);
-  useFrame(() => {
+  useFrame((state, delta) => {
     group.current.children.forEach((child) => {
       const currentColor =
         clicked === child.name ? COLOR_MAIN : hovered === child.name ? COLOR_SUB : 'white';
       recolorMaterial(child, currentColor, hovered ? 0.1 : 0.05);
     });
+    if (!clicked) {
+      group.current.rotation.y += delta / 6;
+    }
   });
 
   const onPointerOverHandler = useCallback((e) => {
