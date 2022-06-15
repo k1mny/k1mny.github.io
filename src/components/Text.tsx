@@ -13,7 +13,7 @@ type props = {
   position: Vector3;
 };
 
-export const Text: FC<props> = ({
+const Text: FC<props> = ({
   children,
   vAlign = 'center',
   hAlign = 'center',
@@ -52,3 +52,5 @@ export const Text: FC<props> = ({
     </group>
   );
 };
+
+export default Text;

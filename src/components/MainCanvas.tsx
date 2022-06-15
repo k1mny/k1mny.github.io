@@ -1,8 +1,8 @@
 import { Canvas, useFrame } from '@react-three/fiber';
-import React, { FC, Ref, useState, Suspense, useRef } from 'react';
+import React, { FC, Ref, useState, Suspense, useRef, useEffect } from 'react';
 
 import * as THREE from 'three';
-import { Text } from './Text';
+import Text from './Text';
 
 function Jumbo() {
   const ref = useRef<THREE.Group>(null!);
@@ -16,12 +16,12 @@ function Jumbo() {
   );
 }
 
-export const MainCanvas: FC = () => {
+const MainCanvas: FC = () => {
   return (
     <Canvas
       camera={{
-        position: [0, 0, 10],
-        fov: 50,
+        position: [0, 0, 50],
+        fov: 90,
         aspect: window.innerWidth / window.innerHeight,
         near: 0.1,
         far: 2000,
@@ -37,3 +37,5 @@ export const MainCanvas: FC = () => {
     </Canvas>
   );
 };
+
+export default MainCanvas;
