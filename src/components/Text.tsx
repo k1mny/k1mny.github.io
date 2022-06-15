@@ -1,12 +1,12 @@
 import * as THREE from 'three'
 import React, { useMemo, useRef, useLayoutEffect, FC } from 'react'
-import fontUrl from './assets/fonts/Melete_Medium_Regular.json'
+import fontUrl from '../../assets/fonts/Melete_Medium_Regular.json'
 import { Text3D } from '@react-three/drei'
 import { Vector3 } from 'three';
 
 type props = {
   children: string
-  hAlign: string
+  hAlign?: string
   vAlign?: string
   size?: number
   color?: string

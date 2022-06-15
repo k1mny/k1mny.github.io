@@ -13,16 +13,14 @@ function Jumbo() {
   })
   return (
     <group ref={ref}>
-      <Text hAlign="right" position={new THREE.Vector3(-12, 6.5, 0)} >KIMNY</Text>
-      <Text hAlign="right" position={new THREE.Vector3(-12, 0, 0)} >KIMNY</Text>
-      <Text hAlign="right" position={new THREE.Vector3(-12, -6.5, 0)} >KIMNY</Text>
+      <Text position={new THREE.Vector3(0, 0, 0)} >KIMNY</Text>
     </group>
   )
 }
 
 export const MainCanvas: FC = () => {
   return (
-    <Canvas camera={{ position: [0, 0, 135] }}>
+    <Canvas camera={{ position: [0, 0, 50] }}>
       <ambientLight intensity={2} />
       <pointLight position={[40, 40, 40]} />
       <Suspense fallback={null}>
