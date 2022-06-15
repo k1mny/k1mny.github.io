@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import React, { useMemo, useRef, useLayoutEffect, FC } from 'react'
-import fontUrl from './assets/fonts/Roboto_Bold.json'
+import fontUrl from './assets/fonts/Melete_Medium_Regular.json'
 import { Text3D } from '@react-three/drei'
 import { Vector3 } from 'three';
 
@@ -30,7 +30,7 @@ export const Text: FC<props> = ({ children, vAlign = 'center', hAlign = 'center'
   }, [children, hAlign, vAlign])
   return (
     <group {...props} scale={[0.1 * size, 0.1 * size, 0.1]}>
-      <Text3D ref={mesh} font={fontUrl} {...config}>
+      <Text3D ref={mesh} font={fontUrl as unknown as string} {...config}>
         {children}
         <meshNormalMaterial />
       </Text3D>
