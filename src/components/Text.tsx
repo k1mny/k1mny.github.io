@@ -47,7 +47,7 @@ const Text: FC<props> = ({
     <group {...props} scale={[0.1 * size, 0.1 * size, 0.1]}>
       <Text3D ref={mesh} font={fontUrl as unknown as string} {...config}>
         {children}
-        <meshToonMaterial color={'white'} />
+        <meshPhongMaterial color={'white'} />
       </Text3D>
     </group>
   );
