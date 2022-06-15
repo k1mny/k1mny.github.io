@@ -1,30 +1,39 @@
-import { FC, Ref, useState } from "react"
+import { Canvas, useFrame } from '@react-three/fiber';
+import React, { FC, Ref, useState, Suspense, useRef } from 'react';
 
-import React, { Suspense, useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Text } from './Text'
-import * as THREE from "three"
+import * as THREE from 'three';
+import { Text } from './Text';
 
 function Jumbo() {
-  const ref = useRef<THREE.Group>(null!)
+  const ref = useRef<THREE.Group>(null!);
   // useFrame(({ clock }) => {
   //   ref.current.rotation.x = ref.current.rotation.y = ref.current.rotation.z = Math.sin(clock.getElapsedTime()) * 0.3
   // })
   return (
     <group ref={ref}>
-      <Text position={new THREE.Vector3(0, 0, 0)} >KIMNY</Text>
+      <Text position={new THREE.Vector3(0, 0, 0)}>KIMNY</Text>
     </group>
-  )
+  );
 }
 
 export const MainCanvas: FC = () => {
   return (
-    <Canvas camera={{ position: [0, 0, 50] }}>
-      <color attach="background" args={["black"]} />
+    <Canvas
+      camera={{
+        position: [0, 0, 10],
+        fov: 50,
+        aspect: window.innerWidth / window.innerHeight,
+        near: 0.1,
+        far: 2000,
+      }}
+      dpr={window.devicePixelRatio}
+      shadows
+    >
+      <color attach='background' args={['black']} />
       <pointLight position={[40, 40, 40]} />
       <Suspense fallback={null}>
         <Jumbo />
       </Suspense>
     </Canvas>
-  )
-}
+  );
+};
