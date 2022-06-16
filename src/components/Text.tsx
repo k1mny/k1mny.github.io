@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import React, { useMemo, useRef, useLayoutEffect, FC } from 'react';
 import fontUrl from '../../assets/fonts/Melete_Medium_Regular.json';
-import { Text3D } from '@react-three/drei';
+import { Text3D, useTexture } from '@react-three/drei';
 import { Vector3 } from 'three';
 
 type props = {
@@ -35,6 +35,8 @@ const Text: FC<props> = ({
     [],
   );
 
+  const [normal] = useTexture([`/textures/pexels-scott-webb-2117937.jpg`]);
+
   const mesh = useRef<THREE.Mesh>(null!);
   useLayoutEffect(() => {
     const size = new THREE.Vector3();
@@ -44,10 +46,10 @@ const Text: FC<props> = ({
     mesh.current.position.y = vAlign === 'center' ? -size.y / 2 : vAlign === 'top' ? 0 : -size.y;
   }, [children, hAlign, vAlign]);
   return (
-    <group {...props} scale={[0.1 * size, 0.1 * size, 0.1]}>
+    <group {...props} scale={[0.1 * size, 0.1 * size, 0.05]}>
       <Text3D ref={mesh} font={fontUrl as unknown as string} {...config}>
         {children}
-        <meshPhongMaterial color={'white'} />
+        <meshPhongMaterial color={'white'} normalMap={normal} />
       </Text3D>
     </group>
   );

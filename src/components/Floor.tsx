@@ -1,29 +1,24 @@
-import { MeshReflectorMaterial, useTexture } from "@react-three/drei"
-import { FC } from "react"
+import { MeshReflectorMaterial, useTexture } from '@react-three/drei';
+import { FC } from 'react';
 
 const Floor: FC = () => {
-	// const filePath = (name: string) => process.env.PUBLIC_URL + `/assets/textures/SurfaceImperfections003_1K_${name}.jpg`
-	// const [roughness] = useTexture([filePath('var1')])
+  const [roughness] = useTexture([`/textures/pexels-scott-webb-2117937.jpg`]);
 
-	return (
-		<mesh position-y={-5} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-			<planeGeometry args={[200, 200, 100, 100]} />
-			<MeshReflectorMaterial
-				resolution={2048}
-				mirror={1}
-				blur={[500, 300]}
-				mixBlur={20}
-				mixStrength={1.5}
-				metalness={1}
-				// roughnessMap={roughness}
-				// distortionMap={normal}
-				// distortion={0.15}
-				// normalMap={normal}
-				// normalScale={new THREE.Vector2(2, 2)}
-				color="#f0f0f0"
-			/>
-		</mesh>
-	)
-}
+  return (
+    <mesh position-y={-3} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
+      <planeGeometry args={[200, 200, 100, 100]} />
+      <MeshReflectorMaterial
+        resolution={2048}
+        mirror={1}
+        blur={[1000, 500]}
+        mixBlur={10}
+        mixStrength={1.5}
+        metalness={1}
+        roughnessMap={roughness}
+        color='#ffffff'
+      />
+    </mesh>
+  );
+};
 
 export default Floor;
