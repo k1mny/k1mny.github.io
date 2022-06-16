@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import React, { useMemo, useRef, useLayoutEffect, FC } from 'react';
-import fontUrl from '../../assets/fonts/Melete_Medium_Regular.json';
+import fontUrl from '../../../assets/fonts/Melete_Medium_Regular.json';
 import { Text3D } from '@react-three/drei';
 import { Vector3 } from 'three';
 import { useBox } from '@react-three/cannon';
-import Charactor from './atoms/PhysicalCharactor';
+import Charactor from '../atoms/PhysicalCharactor';
 
 type props = {
   children: string;
@@ -19,7 +19,7 @@ const PhysicalText: FC<props> = ({
   children,
   vAlign = 'center',
   hAlign = 'center',
-  size = 1.5,
+  size = 0.5,
   color = '#000000',
   ...props
 }) => {
@@ -47,9 +47,18 @@ const PhysicalText: FC<props> = ({
   //   mesh.current.position.y = vAlign === 'center' ? -size.y / 2 : vAlign === 'top' ? 0 : -size.y;
   // }, [children, hAlign, vAlign]);
   return (
-    <group {...props} scale={[0.1 * size, 0.1 * size, 0.1]}>
+    <group {...props} scale={[0.05, 0.05, 0.05]}>
       {children.split('').map((c, idx) => {
-        return(<Charactor key={idx} char={c} fontUrl={fontUrl as unknown as string} size={size*5} position={new THREE.Vector3((idx - children.length/2) * 100, 0, 0)} />)
+        return (
+          <Charactor
+            key={idx}
+            fontUrl={fontUrl as unknown as string}
+            size={size * 5}
+            position={new THREE.Vector3(0, 10, 0)} // {new THREE.Vector3((idx - children.length / 2) * 100, 10, 0)}
+          >
+            {c}
+          </Charactor>
+        );
       })}
     </group>
   );

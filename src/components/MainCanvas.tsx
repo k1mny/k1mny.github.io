@@ -1,22 +1,24 @@
-import { Html } from '@react-three/drei';
-import { Physics } from '@react-three/cannon';
+import { Html, OrbitControls } from '@react-three/drei';
+import { Debug, Physics } from '@react-three/cannon';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import React, { FC, Ref, useState, Suspense, useRef, useEffect } from 'react';
 
 import * as THREE from 'three';
 import Floor from './Floor';
 import Text from './Text';
-import PhysicalText from './PhysicalText';
+import PhysicalText from './molecules/PhysicalText';
 
 const InsideCanvas: FC = () => {
-  const { width } = useThree(state => state.viewport);
+  const { width } = useThree((state) => state.viewport);
   return (
     <>
-      <PhysicalText position={new THREE.Vector3(0, 0, 0)} size={width / 80}>KIMNY</PhysicalText>
+      <Text position={new THREE.Vector3(0, 0, 0)} size={width / 80}>
+        KIMNY
+      </Text>
       <Floor />
     </>
-  )
-}
+  );
+};
 
 const MainCanvas: FC = () => {
   return (
@@ -35,13 +37,13 @@ const MainCanvas: FC = () => {
       <color attach='background' args={['black']} />
       <pointLight position={[40, 40, 40]} />
       <Suspense fallback={<Html center>loading...</Html>}>
-        <Physics
-          gravity={[0, -50, 0]}
-          defaultContactMaterial={{ restitution: 0.7, friction: 0.5 }}
-        >
-          <InsideCanvas />
+        <Physics gravity={[0, -50, 0]} defaultContactMaterial={{ restitution: 0.7, friction: 0.5 }}>
+          <Debug color='white' scale={1.0}>
+            <InsideCanvas />
+          </Debug>
         </Physics>
       </Suspense>
+      <OrbitControls />
     </Canvas>
   );
 };
