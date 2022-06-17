@@ -65,24 +65,33 @@ const Text = forwardRef<THREE.Group, Props>(
 
     const [hovered, setHovered] = useState(false);
 
-    const onPointerOverHandler = useCallback((e: ThreeEvent<PointerEvent>) => {
-      e.stopPropagation();
-      if (link) {
-        setHovered(true);
-      }
-    }, []);
-    const onPointerOutHandler = useCallback((e: ThreeEvent<PointerEvent>) => {
-      e.stopPropagation();
-      if (link) {
-        setHovered(false);
-      }
-    }, []);
-    const onClickHandler = useCallback((e: ThreeEvent<MouseEvent>) => {
-      e.stopPropagation();
-      if (link) {
-        window.open(link, '_blank');
-      }
-    }, []);
+    const onPointerOverHandler = useCallback(
+      (e: ThreeEvent<PointerEvent>) => {
+        e.stopPropagation();
+        if (link) {
+          setHovered(true);
+        }
+      },
+      [link],
+    );
+    const onPointerOutHandler = useCallback(
+      (e: ThreeEvent<PointerEvent>) => {
+        e.stopPropagation();
+        if (link) {
+          setHovered(false);
+        }
+      },
+      [link],
+    );
+    const onClickHandler = useCallback(
+      (e: ThreeEvent<MouseEvent>) => {
+        e.stopPropagation();
+        if (link) {
+          window.open(link, '_blank');
+        }
+      },
+      [link],
+    );
 
     useEffect(() => {
       document.body.style.cursor = hovered ? 'pointer' : 'auto';
