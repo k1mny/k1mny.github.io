@@ -1,5 +1,4 @@
-import { Html, OrbitControls, SpotLight, useDepthBuffer } from '@react-three/drei';
-import { Debug, Physics } from '@react-three/cannon';
+import { Html, OrbitControls, ScrollControls } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import React, { FC, Ref, useState, Suspense, useRef, useEffect } from 'react';
 
@@ -7,37 +6,16 @@ import * as THREE from 'three';
 import Floor from './Floor';
 import Text from './Text';
 import Postprocessing from './PostProcessing';
+import Lights from './Lights';
 
 const InsideCanvas: FC = () => {
   const { width } = useThree((state) => state.viewport);
-  const depthBuffer = useDepthBuffer({ size: 256 });
 
   return (
     <>
-      {/* Green */}
-      <SpotLight
-        penumbra={0.8}
-        depthBuffer={depthBuffer}
-        position={[-10, 10, 15]}
-        intensity={20}
-        angle={-1.0}
-        distance={30}
-        color='#a0cd9e'
-        castShadow
-      />
-      {/* Purple */}
-      <SpotLight
-        penumbra={0.5}
-        depthBuffer={depthBuffer}
-        position={[10, 10, -15]}
-        intensity={50}
-        angle={1.0}
-        distance={30}
-        color='#5f3261'
-        castShadow
-      />
+      <Lights />
       <Text position={new THREE.Vector3(0, 0, 0)} size={width / 80}>
-        KIMNY
+        kimny
       </Text>
       <Floor />
       <Postprocessing />
@@ -59,11 +37,13 @@ const MainCanvas: FC = () => {
       dpr={window.devicePixelRatio}
       shadows
     >
-      <color attach='background' args={['black']} />
-      {/* <pointLight position={[40, 40, 40]} /> */}
-      <Suspense fallback={<Html center>loading...</Html>}>
-        <InsideCanvas />
-      </Suspense>
+      <ScrollControls pages={2}>
+        <color attach='background' args={['black']} />
+        {/* <pointLight position={[40, 40, 40]} /> */}
+        <Suspense fallback={<Html center>loading...</Html>}>
+          <InsideCanvas />
+        </Suspense>
+      </ScrollControls>
       {/* <OrbitControls /> */}
     </Canvas>
   );

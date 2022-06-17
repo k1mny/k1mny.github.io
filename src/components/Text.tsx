@@ -3,6 +3,7 @@ import React, { useMemo, useRef, useLayoutEffect, FC } from 'react';
 import fontUrl from '../../assets/fonts/Melete_Medium_Regular.json';
 import { Text3D, useTexture } from '@react-three/drei';
 import { Vector3 } from 'three';
+import { useFrame } from '@react-three/fiber';
 
 type props = {
   children: string;
@@ -38,6 +39,7 @@ const Text: FC<props> = ({
   const [normal] = useTexture([`/textures/pexels-scott-webb-2117937.jpg`]);
 
   const mesh = useRef<THREE.Mesh>(null!);
+  const ref = useRef<THREE.Group>(null!);
   useLayoutEffect(() => {
     const size = new THREE.Vector3();
     mesh.current.geometry.computeBoundingBox();
@@ -45,8 +47,13 @@ const Text: FC<props> = ({
     mesh.current.position.x = hAlign === 'center' ? -size.x / 2 : hAlign === 'right' ? 0 : -size.x;
     mesh.current.position.y = vAlign === 'center' ? -size.y / 2 : vAlign === 'top' ? 0 : -size.y;
   }, [children, hAlign, vAlign]);
+
+  useFrame(() => {
+    ref.current.rotation.y += 0.01;
+  });
+
   return (
-    <group {...props} scale={[0.1 * size, 0.1 * size, 0.05]}>
+    <group ref={ref} {...props} scale={[0.1 * size, 0.1 * size, 0.05]}>
       <Text3D ref={mesh} font={fontUrl as unknown as string} {...config}>
         {children}
         <meshPhongMaterial color={'white'} normalMap={normal} />
