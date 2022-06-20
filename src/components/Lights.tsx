@@ -1,31 +1,22 @@
-import { SpotLight, useDepthBuffer } from '@react-three/drei';
-import { FC } from 'react';
+import { SpotLight, useDepthBuffer, useScroll } from '@react-three/drei';
+import { useFrame, useThree } from '@react-three/fiber';
+import { FC, useRef } from 'react';
 
 const Lights: FC = () => {
   const depthBuffer = useDepthBuffer({ size: 256 });
+  const { width, height } = useThree((state) => state.viewport);
 
   return (
     <>
-      {/* Green */}
-      <SpotLight
-        penumbra={0.8}
-        depthBuffer={depthBuffer}
-        position={[-10, 10, 15]}
-        intensity={20}
-        angle={-1.0}
-        distance={30}
-        color='#a0cd9e'
-        castShadow
-      />
       {/* Purple */}
       <SpotLight
         penumbra={0.5}
         depthBuffer={depthBuffer}
-        position={[10, 10, -15]}
+        position={[-width / 2, 10, 10]}
         intensity={50}
-        angle={1.0}
-        distance={30}
-        color='#5f3261'
+        angle={Math.PI / 2}
+        distance={100}
+        color='#f0f0f0'
         castShadow
       />
     </>

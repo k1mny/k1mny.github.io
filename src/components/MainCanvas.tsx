@@ -1,4 +1,4 @@
-import { Html, OrbitControls, ScrollControls, useScroll } from '@react-three/drei';
+import { Html, Image, OrbitControls, ScrollControls, useScroll } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import React, { FC, Suspense, useCallback } from 'react';
 
@@ -9,57 +9,54 @@ import Postprocessing from './PostProcessing';
 import Lights from './Lights';
 import { Euler, Spherical, Vector3 } from 'three';
 import useRefs from 'react-use-refs';
+import Photos from './Photos';
 
 const InsideCanvas: FC = () => {
   const { width } = useThree((state) => state.viewport);
   const scroll = useScroll();
 
-  const [scene, name, twitter] = useRefs<THREE.Group>(null);
+  const [scene, name, photo, twitter] = useRefs<THREE.Group>(null);
 
   useFrame((state, delta) => {
-    const r1 = scroll.range(0 / 2, 1 / 2);
+    const r1 = scroll.range(0 / 2, 2 / 2);
     if (scene.current) {
-      scene.current.rotation.y = r1 * Math.PI * 2;
+      scene.current.position.y = r1 * 30;
     }
   });
 
-  const distanceFromOrigin = 15;
-  const center = new Vector3(distanceFromOrigin, 0, 0);
-
-  const thetaToVector3 = useCallback(
-    (theta: number): Vector3 => {
-      theta += (Math.PI * 3) / 2;
-      theta %= Math.PI * 2;
-      const p = new Vector3();
-      p.setFromSpherical(new Spherical(distanceFromOrigin, Math.PI / 2, theta));
-      return p;
-    },
-    [distanceFromOrigin],
-  );
-
   return (
     <>
-      <Lights />
-      <group ref={scene} position={center}>
+      <group ref={scene} position={new THREE.Vector3(0, 0, 0)}>
+        <Lights />
+
         <Text
           ref={name}
-          position={thetaToVector3(0)}
+          position={new THREE.Vector3(0, 0, 2)}
           rotation={new Euler(0, 0, 0)}
           size={width / 80}
         >
           kimny
         </Text>
         <Text
+          ref={photo}
+          position={new THREE.Vector3(0, -15, 2)}
+          rotation={new Euler(0, 0, 0)}
+          size={width / 80}
+        >
+          Photo
+        </Text>
+        <Text
           ref={twitter}
           link={'https://twitter.com/k1mny'}
-          position={thetaToVector3(Math.PI)}
-          rotation={new Euler(0, Math.PI, 0)}
+          position={new THREE.Vector3(0, -30, 2)}
+          rotation={new Euler(0, 0, 0)}
           size={width / 80}
         >
           Twitter
         </Text>
+        <Photos />
       </group>
-      <Floor />
+      {/* <Floor /> */}
       <Postprocessing />
     </>
   );
@@ -79,8 +76,8 @@ const MainCanvas: FC = () => {
       dpr={window.devicePixelRatio}
       shadows
     >
-      <ScrollControls pages={2}>
-        <color attach='background' args={['black']} />
+      <ScrollControls pages={3}>
+        <color attach='background' args={['#0f0f0f']} />
         <Suspense fallback={<Html center>loading...</Html>}>
           <InsideCanvas />
         </Suspense>

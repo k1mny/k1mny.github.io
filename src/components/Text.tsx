@@ -98,7 +98,7 @@ const Text = forwardRef<THREE.Group, Props>(
     }, [hovered]);
 
     return (
-      <group ref={ref} {...props} scale={[0.1 * size, 0.1 * size, 0.05]}>
+      <group ref={ref} {...props} scale={[0.1 * size, 0.1 * size, 0.01]}>
         <Text3D
           ref={mesh}
           font={fontUrl as unknown as string}
