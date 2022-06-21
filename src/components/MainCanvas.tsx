@@ -15,7 +15,7 @@ const InsideCanvas: FC = () => {
   const { width } = useThree((state) => state.viewport);
   const scroll = useScroll();
 
-  const [scene, name, photo, twitter] = useRefs<THREE.Group>(null);
+  const [scene, name, twitter] = useRefs<THREE.Group>(null);
 
   useFrame((state, delta) => {
     const r1 = scroll.range(0 / 2, 2 / 2);
@@ -36,14 +36,6 @@ const InsideCanvas: FC = () => {
           size={width / 80}
         >
           kimny
-        </Text>
-        <Text
-          ref={photo}
-          position={new THREE.Vector3(0, -15, 2)}
-          rotation={new Euler(0, 0, 0)}
-          size={width / 80}
-        >
-          Photo
         </Text>
         <Text
           ref={twitter}

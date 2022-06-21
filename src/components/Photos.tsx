@@ -18,22 +18,31 @@ const Photos: FC = () => {
   return (
     <group ref={group}>
       <Image
+        alt='main monochrome building'
         position={[0, (height * 1) / 15, 0]}
         scale={[width, (height * 2) / 3, 1]}
         url='/photos/R0000332.jpg'
       />
       <Image
+        alt='clouded cranes'
         position={[Math.min(6, width / 3), -height / 2, 1]}
         scale={[(width * 3) / 5, height / 2 + 2, 1]}
         url='/photos/R0000147.jpg'
       />
-      <Image position={[0, -height, -2]} scale={[width, 10, 1]} url='/photos/R0000167-9.jpg' />
       <Image
+        alt='monochrome stair pattern'
+        position={[0, -height, -2]}
+        scale={[width, 10, 1]}
+        url='/photos/R0000167-9.jpg'
+      />
+      <Image
+        alt='simple monochrome apartment'
         position={[-width / 3, -height / 3 - 3, 3]}
-        scale={[width / 4, 5, 1]}
+        scale={[width / 4, 8, 1]}
         url='/photos/R0000242.jpg'
       />
       <Image
+        alt='monochrome electric wires'
         position={[-1, -height * 1.5, 1]}
         scale={[(width * 2) / 3, 10, 1]}
         url='/photos/R0000322.jpg'
