@@ -10,6 +10,7 @@ import Lights from './Lights';
 import { Euler, Spherical, Vector3 } from 'three';
 import useRefs from 'react-use-refs';
 import Photos from './Photos';
+import Loading from './Loading';
 
 const InsideCanvas: FC = () => {
   const { width } = useThree((state) => state.viewport);
@@ -68,13 +69,13 @@ const MainCanvas: FC = () => {
       dpr={window.devicePixelRatio}
       shadows
     >
-      <ScrollControls pages={3}>
-        <color attach='background' args={['#0f0f0f']} />
-        <Suspense fallback={<Html center>loading...</Html>}>
+      <Suspense fallback={<Loading />}>
+        <ScrollControls pages={3}>
+          <color attach='background' args={['#0f0f0f']} />
           <InsideCanvas />
-        </Suspense>
-      </ScrollControls>
-      {/* <OrbitControls /> */}
+        </ScrollControls>
+        {/* <OrbitControls /> */}
+      </Suspense>
     </Canvas>
   );
 };
