@@ -30,7 +30,7 @@ const InsideCanvas: FC = () => {
       <group ref={scene} position={new THREE.Vector3(0, 0, 0)}>
         <Lights />
 
-        <Text
+        {/* <Text
           ref={name}
           position={new THREE.Vector3(0, 0, 2)}
           rotation={new Euler(0, 0, 0)}
@@ -46,7 +46,7 @@ const InsideCanvas: FC = () => {
           size={width / 80}
         >
           Twitter
-        </Text>
+        </Text> */}
         <Photos />
       </group>
       {/* <Floor /> */}
