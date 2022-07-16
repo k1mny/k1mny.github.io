@@ -5,12 +5,24 @@ import axios from 'axios';
 import { FC, useEffect, useRef, useState } from 'react';
 import { Vector3 } from 'three';
 
+type Photo = {
+  id: number;
+  width: number;
+  height: number;
+  urls: { large: string; regular: string; raw: string; small: string };
+  color: string | null;
+  user: {
+    username: string;
+    name: string;
+  };
+};
+
 const Photos: FC = () => {
   const { width, height } = useThree((state) => state.viewport);
   const picWidth = width / 3;
 
-  const [photos, setPhotos] = useState([]);
-  const [pos, setPos] = useState([]);
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [pos, setPos] = useState<Vector3[]>([]);
   useEffect(() => {
     axios
       .get('https://api.unsplash.com/users/kimny/photos?per_page=15&order_by=views', {
@@ -18,10 +30,10 @@ const Photos: FC = () => {
           Authorization: `Client-ID 1g7UrBr5iksM0axEeSZ8B6l3lhcu2LLr_7V-QfmMlIg`,
         },
       })
-      .then((res) => {
+      .then((res: { data: Photo[] }) => {
         setPhotos(res.data);
         // 各写真をこの高さにする
-        const picHeights = res.data.map((c) => (picWidth * c.height) / c.width);
+        const picHeights: number[] = res.data.map((c) => (picWidth * c.height) / c.width);
         setPos(
           picHeights.map((h, i, arr) => {
             const prevHeight = arr
