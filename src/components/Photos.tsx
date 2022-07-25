@@ -4,6 +4,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import axios from 'axios';
 import { FC, useEffect, useRef, useState } from 'react';
 import { Vector3 } from 'three';
+import { randFloat } from 'three/src/math/MathUtils';
 
 type Photo = {
   id: number;
@@ -32,8 +33,25 @@ const Photos: FC = () => {
       })
       .then((res: { data: Photo[] }) => {
         setPhotos(res.data);
+        // 合計高さを決める
+        const picColHeights = [0, 1, 2].map((i) =>
+          res.data
+            .filter((_, idx) => idx % 3 === i % 3)
+            .reduce((prev, curr) => prev + (picWidth * curr.height) / curr.width, 0),
+        );
+        const totalHeight = Math.max(...picColHeights) * 1.1;
+        const heightMargin = [totalHeight, totalHeight, totalHeight];
+        console.log(heightMargin);
         // 各写真をこの高さにする
-        const picHeights: number[] = res.data.map((c) => (picWidth * c.height) / c.width);
+        const picHeights: number[] = res.data.map((c, idx, arr) => {
+          const colIdx = idx % 3;
+          const margin =
+            idx < arr.length - 3 ? heightMargin[colIdx] * randFloat(0, 0.1) : heightMargin[colIdx];
+          const picHeight = (picWidth * c.height) / c.width;
+          heightMargin[colIdx] -= margin + picHeight;
+          return picHeight + margin;
+        });
+
         setPos(
           picHeights.map((h, i, arr) => {
             const prevHeight = arr
@@ -46,7 +64,7 @@ const Photos: FC = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [height, picWidth, width]);
 
   const data = useScroll();
   const group = useRef<THREE.Group>(null!);
