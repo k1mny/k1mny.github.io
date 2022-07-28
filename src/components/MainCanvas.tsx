@@ -14,14 +14,14 @@ import Loading from './Loading';
 
 const InsideCanvas: FC = () => {
   const { width } = useThree((state) => state.viewport);
-  const scroll = useScroll();
+  // const scroll = useScroll();
 
-  const [scene, name, twitter] = useRefs<THREE.Group>(null);
+  const [scene, twitter, unsplash] = useRefs<THREE.Group>(null);
 
   useFrame((state, delta) => {
-    const r1 = scroll.range(0 / 2, 2 / 2);
+    // const r1 = scroll.range(0 / 2, 2 / 2);
     if (scene.current) {
-      scene.current.position.y = r1 * 30;
+      // scene.current.position.y = (scene.current.position.y + 0.01) % 30;
     }
   });
 
@@ -29,24 +29,24 @@ const InsideCanvas: FC = () => {
     <>
       <group ref={scene} position={new THREE.Vector3(0, 0, 0)}>
         <Lights />
-
-        {/* <Text
-          ref={name}
-          position={new THREE.Vector3(0, 0, 2)}
-          rotation={new Euler(0, 0, 0)}
-          size={width / 80}
-        >
-          kimny
-        </Text>
         <Text
           ref={twitter}
           link={'https://twitter.com/k1mny'}
-          position={new THREE.Vector3(0, -30, 2)}
+          position={new THREE.Vector3(0, 0, 0)}
           rotation={new Euler(0, 0, 0)}
           size={width / 80}
         >
           Twitter
-        </Text> */}
+        </Text>
+        <Text
+          ref={unsplash}
+          link={'https://unsplash.com/@kimny'}
+          position={new THREE.Vector3(0, -3, 0)}
+          rotation={new Euler(0, 0, 0)}
+          size={width / 80}
+        >
+          Unsplash
+        </Text>
         <Photos />
       </group>
       {/* <Floor /> */}
@@ -70,10 +70,10 @@ const MainCanvas: FC = () => {
       shadows
     >
       <Suspense fallback={<Loading />}>
-        <ScrollControls pages={3}>
-          <color attach='background' args={['#0f0f0f']} />
-          <InsideCanvas />
-        </ScrollControls>
+        {/* <ScrollControls pages={3}> */}
+        <color attach='background' args={['#0f0f0f']} />
+        <InsideCanvas />
+        {/* </ScrollControls> */}
         {/* <OrbitControls /> */}
       </Suspense>
     </Canvas>

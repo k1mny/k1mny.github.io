@@ -18,12 +18,15 @@ type Photo = {
   };
 };
 
+const scrollSpeed = [randFloat(0.001, 0.005), randFloat(0.001, 0.005), randFloat(0.001, 0.005)];
+
 const Photos: FC = () => {
   const { width, height } = useThree((state) => state.viewport);
   const picWidth = width / 3;
 
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [pos, setPos] = useState<Vector3[]>([]);
+  const [scrollHeight, setScrollHeight] = useState<number>(0);
   useEffect(() => {
     axios
       .get('https://api.unsplash.com/users/kimny/photos?per_page=15&order_by=views', {
@@ -40,6 +43,7 @@ const Photos: FC = () => {
             .reduce((prev, curr) => prev + (picWidth * curr.height) / curr.width, 0),
         );
         const totalHeight = Math.max(...picColHeights) * 1.1;
+        setScrollHeight(totalHeight);
         const heightMargin = [totalHeight, totalHeight, totalHeight];
         console.log(heightMargin);
         // 各写真をこの高さにする
@@ -66,7 +70,7 @@ const Photos: FC = () => {
       });
   }, [height, picWidth, width]);
 
-  const data = useScroll();
+  // const data = useScroll();
   const group = useRef<THREE.Group>(null!);
 
   useFrame(() => {
@@ -78,6 +82,13 @@ const Photos: FC = () => {
     // group.current.children[4].material.zoom = 1 + data.range(1.25 / 3, 1 / 3) / 1;
     // group.current.children[5].material.zoom = 1 + data.range(1.8 / 3, 1 / 3) / 3;
     // group.current.children[4].position.x = (data.range(2 / 3, 3 / 3) * width) / 3;
+    group.current.children.map((img, idx) => {
+      let nextPosY = img.position.y + scrollSpeed[idx % 3];
+      if (nextPosY > height) {
+        nextPosY = pos[idx].y - scrollHeight;
+      }
+      img.position.y = nextPosY;
+    });
   });
   return (
     <group ref={group}>
