@@ -1,6 +1,6 @@
 import { Html, useProgress } from '@react-three/drei';
 import { FC, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const Loading: FC = () => {
   const { progress } = useProgress();
@@ -26,11 +26,29 @@ const Box = styled.div`
   background-color: #0f0f0f;
 `;
 
+const textclip = keyframes`
+  from {
+    background-position: 200% center;
+  }
+`;
+
 const CenterText = styled.div`
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 100px;
-  color: #f0f0f0;
   margin-bottom: 10px;
+
+  background-image: linear-gradient(90deg, #f0f0f0 0%, #0a0a0a 29%, #0f0f0f 67%, #f0f0f0 100%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ${textclip} 1s linear infinite;
+  display: inline-block;
+  font-size: 190px;
 `;
 
 const ProgressBar = styled.progress`
