@@ -8,7 +8,7 @@ import React, {
   useCallback,
   useEffect,
 } from 'react';
-import fontUrl from '../../assets/fonts/Melete_Medium_Regular.json';
+import fontUrl from '../../../assets/fonts/Melete_Medium_Regular.json';
 import { Text3D, useTexture } from '@react-three/drei';
 import { Euler, Vector3 } from 'three';
 import { ThreeEvent } from '@react-three/fiber';
