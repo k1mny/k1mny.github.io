@@ -1,4 +1,4 @@
-import { OrbitControls, ScrollControls, useScroll } from '@react-three/drei';
+import { OrbitControls, ScrollControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import React, { FC, Suspense } from 'react';
 
@@ -21,8 +21,10 @@ const MainCanvas: FC = () => {
     >
       <Suspense fallback={<Loading />}>
         <color attach='background' args={['#0f0f0f']} />
-        <MirrorBox />
-        <OrbitControls />
+        <ScrollControls pages={4}>
+          <MirrorBox />
+        </ScrollControls>
+        {/* <OrbitControls /> */}
       </Suspense>
     </Canvas>
   );

@@ -8,9 +8,10 @@ interface MagicMirrorProps {
   children: ReactNode;
   position: Vector3;
   rotation: Euler;
+  size: number;
 }
 
-const MagicMirror: FC<MagicMirrorProps> = ({ children, ...props }) => {
+const MagicMirror: FC<MagicMirrorProps> = ({ children, size, ...props }) => {
   const cam = useRef<THREE.Camera>(null!);
   // useFBO creates a WebGL2 buffer for us, it's a helper from the "drei" library
   const fbo = useFBO();
@@ -30,7 +31,7 @@ const MagicMirror: FC<MagicMirrorProps> = ({ children, ...props }) => {
   return (
     <>
       <mesh {...props}>
-        <planeGeometry args={[10, 10]} />
+        <planeGeometry args={[size, size]} />
         {/* The "mirror" is just a boring plane, but it receives the buffer texture */}
         <meshBasicMaterial map={fbo.texture} />
       </mesh>
