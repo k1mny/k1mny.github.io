@@ -39,7 +39,7 @@ const MagicMirror: FC<MagicMirrorProps> = ({ children, size, ...props }) => {
         manual
         ref={cam}
         fov={50}
-        aspect={2.5 / 5}
+        aspect={1}
         onUpdate={(c) => c.updateProjectionMatrix()}
       />
       {/* This is React being awesome, we portal this components children into the separate scene above */}

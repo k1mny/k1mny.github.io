@@ -98,12 +98,11 @@ const Photos: FC = () => {
             key={idx}
             position={pos[idx]}
             scale={
-              [picWidth, (width / 3 / photo.width) * photo.height, 1] as [
-                x: number,
-                y: number,
-                z: number,
-              ] &
-                number
+              [
+                picWidth * randFloat(1, 3),
+                (width / 3 / photo.width) * photo.height,
+                randFloat(1, 20),
+              ] as [x: number, y: number, z: number] & number
             }
             url={photo.urls.regular}
           />
