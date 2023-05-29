@@ -10,6 +10,7 @@ export const Icons: FC = () => {
         alignItems: 'center',
         justifyContent: 'space-around',
         width: '100%',
+        margin: '10px 0 30px 0',
       }}
     >
       <Icon type='FaTwitter' url='https://twitter.com/k1mny' />
