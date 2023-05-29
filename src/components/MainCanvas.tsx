@@ -68,6 +68,7 @@ const MainCanvas: FC = () => {
       }}
       dpr={window.devicePixelRatio}
       shadows
+      style={{ width: '580px' }}
     >
       <Suspense fallback={<Loading />}>
         {/* <ScrollControls pages={3}> */}
