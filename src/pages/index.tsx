@@ -1,14 +1,13 @@
 import type { NextPage } from 'next';
-import dynamic from 'next/dynamic';
 import Head from 'next/head';
-const MainCanvas = dynamic(() => import('../components/MainCanvas'), { ssr: false });
+import { Card } from '../components/Card';
 
 const Home: NextPage = () => {
   return (
     <div>
       <Head>
         <title>kimny</title>
-        <meta name='description' content='Portfoliony' />
+        <meta name='description' content='kimny portfolio' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
@@ -22,7 +21,7 @@ const Home: NextPage = () => {
             backgroundColor: '#0f0f0f',
           }}
         >
-          <MainCanvas />
+          <Card />
         </div>
       </main>
     </div>
