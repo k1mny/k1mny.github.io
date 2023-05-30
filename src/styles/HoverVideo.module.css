@@ -1,7 +1,7 @@
 .hoverVideo {
   position: relative;
   width: 100%;
-  height: 193px; /* 1:3 */
+  height: 249px; /* 21:9 */
   transition: filter 0.3s;
   overflow: hidden;
 }
@@ -14,14 +14,14 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: white;
+  color: #f0f0f0;
   text-align: center;
   z-index: 1;
 }
 
 .hoverVideoText {
   position: absolute;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
   margin-top: auto;
   margin-bottom: auto;

@@ -20,14 +20,14 @@ export const Card: FC = () => {
       <h1>kimny</h1>
       <Icons />
       <HoverVideo
-        thumbnail='/test.png'
+        thumbnail='/diceroll.jpg'
         video='/diceroll.gif'
         link='https://k1mny.github.io/dice-roll/'
         text='Dice Roll'
       />
       <HoverVideo
-        thumbnail='/test.png'
-        video='/diceroll.gif'
+        thumbnail='/wor3dle.jpg'
+        video='/wor3dle.gif'
         link='https://k1mny.github.io/wor3dle/'
         text='WOR3DLE'
       />
