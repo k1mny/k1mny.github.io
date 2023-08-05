@@ -1,7 +1,9 @@
 import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-const MainCanvas = dynamic(() => import('../components/MainCanvas'), { ssr: false });
+import { Suspense } from 'react';
+import { MainCanvas } from '../components/MainCanvas';
+// const MainCanvas = dynamic(() => import('../components/MainCanvas'), { ssr: false });
 
 const Home: NextPage = () => {
   return (
@@ -12,18 +14,9 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
-        <div
-          style={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#0f0f0f',
-          }}
-        >
+        <Suspense fallback={null}>
           <MainCanvas />
-        </div>
+        </Suspense>
       </main>
     </div>
   );
