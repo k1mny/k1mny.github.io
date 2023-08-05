@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { Suspense } from 'react';
 import { MainCanvas } from '../components/MainCanvas';
-// const MainCanvas = dynamic(() => import('../components/MainCanvas'), { ssr: false });
+import { Overlay } from '../components/Overlay';
 
 const Home: NextPage = () => {
   return (
@@ -17,6 +17,7 @@ const Home: NextPage = () => {
         <Suspense fallback={null}>
           <MainCanvas />
         </Suspense>
+        <Overlay />
       </main>
     </div>
   );
