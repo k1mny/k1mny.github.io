@@ -57,6 +57,7 @@ export const Item: FC<ItemType> = ({ index, position, scale, c = new THREE.Color
     }
   });
   return (
+    // eslint-disable-next-line jsx-a11y/alt-text
     <Image
       ref={ref}
       {...props}
