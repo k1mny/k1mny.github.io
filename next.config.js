@@ -2,15 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
+  images: { unoptimized: true },
 };
 
 module.exports = nextConfig;
-
-module.exports = {
-  eslint: {
-    dirs: ['src'],
-  },
-};
-
-// const withTM = require("next-transpile-modules")(["three"]);
-// module.exports = withTM();
